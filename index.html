@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .class-box {
+        background: #c0bbbb;
+        height: 50vh;
+        width: 40%;
+        margin: auto;
+        border-radius: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .class-element {
+            /* background: #874949; */
+            width: 20%;
+            height: 35%;
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+            border-radius: 15px;
+        }
+    }
+
+    .btn {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #c0bbbb;
+            color: rgb(12, 10, 9);
+            text-transform: uppercase;
+            
+        }
+        button:active {
+            background: #e04949;
+            color: white;
+        }
+    }
+    .class-main{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .child-box{
+            background: #d3cccc;
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius:10px ;
+        }
+
+    }
+    .rendom {
+        height: 22vh;
+        width: 22vh;
+
+    }
+    h1, p{
+        text-align: center;
+    }
+
+    @media(max-width: 600px)and (min-width: 200px) {
+        .class-box {
+            height: 50vh;
+            width: 100%;
+            .class-element{
+                margin: 10px;
+                width:28%;
+                height: 28%;
+                img{
+                    border-radius: 10px;
+                }
+            }
+        }
+        .rendom {
+        height: 15vh;
+        width: 15vh;
+        margin: 10px;
+        border-radius: 10px;
+
+    }
+}
+
+
+
+</style>
+
+<body>
+    <h1>Welcome </h1>
+    <p>click button click me for play</p>
+    <div class="class-box">
+        <div class="class-element">
+            <img src="./image/2.png" alt="">
+        </div>
+        <div class="class-element">
+            <img src="./image/3.png" alt="">
+        </div>
+        <div class="class-element">
+            <img src="./image/4.png" alt="">
+        </div>
+        <div class="class-element">
+            <img src="./image/6.png" alt="">
+        </div>
+        <div class="class-element">
+            <img src="./image/5.png" alt="">
+        </div>
+        <div class="class-element">
+            <img src="./image/1.png" alt="">
+        </div>
+    </div>
+    <div class="btn">
+        <button id="click">start game</button>
+    </div>
+    <div class="class-main" id="image">
+
+    </div>
+</body>
+ <script>
+    const img = [
+        "image/1.png",
+        "image/2.png",
+        "image/3.png",
+        "image/4.png",
+        "image/5.png",
+        "image/6.png"
+    ]
+
+    function call (){
+        const image = document.getElementById('image');
+        image.innerHTML = '';
+        const cI = [...img];
+        for(let i = 0; i < 3; i++){
+            if(cI.length === 0){
+                console.log('not enough');
+                break;
+            }
+            const randoms = Math.floor(Math.random() * cI.length );
+            const sLi = cI.splice(randoms, 1)[0];
+            let creatImg = document.createElement('img');
+            creatImg.src = sLi;
+            creatImg.classList.add('rendom')
+            image.appendChild(creatImg);
+        }
+    };
+    const btn = document.getElementById('click');
+    btn.addEventListener('click', () => {
+        call();
+    })
+ </script>
+</html>
